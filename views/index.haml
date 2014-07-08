@@ -1,0 +1,70 @@
+!!!
+%html
+  %head
+    %meta{charset: "utf-8"}/
+    %title URDB!
+    :css
+      /*    .columns {
+            border: 2px solid green;
+          }
+          .row {
+            border: 2px solid red;
+          }*/
+  %body
+    %link{href: "//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.0/css/foundation.min.css", rel: "stylesheet", type: "text/css"}/
+    %script{src: "js/jquery-1.11.1.min.js"}
+    %script{src: "js/handlebars-v1.3.0.js"}
+    %script#mov-pin-template{type: "text/x-handlebars-template"}
+      :cdata
+        <li id="mov-button" data-arrayid=>
+        <image class ="image" src="http://image.tmdb.org/t/p/original/">
+        </li>
+    / need to add imdb link and tagline to the movie info
+    %script#mov-info-template{type: "text/x-handlebars-template"}
+      :cdata
+        <div class="large-10 small-10 medium-10 columns panel push-1">
+
+        <div class="large-4 small-4 medium-4 push-1 columns text-center">
+        <image class ="image" src="http://image.tmdb.org/t/p/original/"></image>
+        <div class="button radius round add-to-playlist" data-mid=""> Add to Playlist</div>
+        </div>
+        <div class="large-7 small-7 medium-7 columns" >
+        <h3></h3>
+        <ul>
+        <li>Original Title: <div></div></li>
+        <li>TMDB ID: </li>
+        <li>popularrity: </li>
+        <li>Release Date: </li>
+        <li>Vote Average: </li>
+        <li>Vote Count: </li>
+        <li>IMDB Link: </li>
+        <li>TagLine: </li>
+        </ul>
+        </div>
+        </div>
+    / STATIC HTML and ANCHORS BEGIN BELOW
+    #movie-info.row
+    #movieTypes.row
+      .large-10.small-10.medium-10.columns.large-centered.small-centered.medium-centered
+        .large-3.small-3.medium-3.columns
+          %label
+            Filter
+            %select#moviesSelect
+              / <option value="upcoming">Upcoming</option>
+              %option{value: "popular"} Popular
+              / <option value="latest">Latest</option>
+              %option{value: "nowPlaying"} Now Playing
+              %option{value: "topRated"} Top Rated
+        .large-3.small-3.medium-3.columns
+          %label
+            Name Search
+            %input{name: "searchMovie", type: "text", value: ""}/
+        .large-3.small-3.medium-3.columns
+          %label
+            PlayLists
+            %select#playListSelect
+              %option{value: "playlist1"} Playlist1
+    .row
+      .large-12.small-12.medium-12.columns.panel
+        %ul#now-playing-movies.large-block-grid-8.small-block-grid-8.medium-block-grid-5
+    %script{src: "js/awesomeApp.js"}

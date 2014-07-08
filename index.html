@@ -3,10 +3,94 @@
 <head>
   <meta charset="utf-8">
   <title>URDB!</title>
+  <style type="text/css">
+/*    .columns {
+      border: 2px solid green;
+    }
+    .row {
+      border: 2px solid red;
+    }*/
+  </style>
 </head>
 <body>
-  <div class="main">hello world</div>
+
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.0/css/foundation.min.css">
   <script src="js/jquery-1.11.1.min.js"></script>
   <script src="js/handlebars-v1.3.0.js"></script>
+
+  <script id="mov-pin-template" type="text/x-handlebars-template">
+    <li id="mov-button" data-arrayid={{arrayid}}>
+      <image class ="image" src="http://image.tmdb.org/t/p/original/{{poster_path}}">
+    </li>
+  </script>
+
+  <!-- need to add imdb link and tagline to the movie info -->
+  <script id="mov-info-template" type="text/x-handlebars-template">
+    <div class="large-10 small-10 medium-10 columns push-1 panel">
+      <div class="large-5 small-5 medium-5 columns text-center">
+        <image class ="image" src="http://image.tmdb.org/t/p/original/{{poster_path}}"></image>
+        <p><div class="button tiny radius round add-to-playlist" data-mid="{{id}}"> Add to Playlist</div></p>
+      </div>
+      <div class="large-7 small-7 medium-7 columns" >
+        <h3>{{title}}</h3>
+          <ul>
+          <li>Original Title: <div>{{original_title}}</div></li>
+          <li>TMDB ID: {{id}}</li>
+          <li>popularrity: {{popularity}}</li>
+          <li>Release Date: {{release_date}}</li>
+          <li>Vote Average: {{vote_average}}</li>
+          <li>Vote Count: {{vote_count}}</li>
+          <li>IMDB Link: {{ibdm_link}}</li>
+          <li>TagLine: {{tagline}}</li>
+          </ul>
+      </div>
+    </div>
+  </script>
+
+<!-- STATIC HTML and ANCHORS BEGIN BELOW -->
+
+  <div class="row" id="movie-info">
+
+  </div>
+
+  <div class="row" id="movieTypes">
+    <div class="large-10 small-10 medium-10 columns large-centered small-centered medium-centered">
+      <div class="large-3 small-3 medium-3 columns">
+        <label>Filter
+          <select id="moviesSelect">
+            <!-- <option value="upcoming">Upcoming</option> -->
+            <option value="popular">Popular</option>
+            <!-- <option value="latest">Latest</option> -->
+            <option value="nowPlaying">Now Playing</option>
+            <option value="topRated">Top Rated</option>
+          </select>
+        </label>
+      </div>
+      <div class="large-3 small-3 medium-3 columns">
+        <label>Name Search
+          <input type="text" name="searchMovie" value="">
+        </label>
+      </div>
+      <div class="large-3 small-3 medium-3 columns">
+        <label>PlayLists
+          <select id="playListSelect">
+            <option value="playlist1">Playlist1</option>
+          </select>
+        </label>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-12 small-12 medium-12 columns panel">
+      <ul id="now-playing-movies" class="large-block-grid-8 small-block-grid-8 medium-block-grid-5">
+
+      </ul>
+    </div>
+  </div>
+
+  <script src="js/awesomeApp.js"></script>
 </body>
+
 </html>
