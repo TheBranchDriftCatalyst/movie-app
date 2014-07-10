@@ -11,16 +11,16 @@
       border: 2px solid red;
     }*/
   </style>
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.0/css/foundation.min.css">
+  <script data-main="js/main" src="js/vendor/require.js"></script>
 </head>
 <body>
 
-  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.0/css/foundation.min.css">
-  <script src="js/jquery-1.11.1.min.js"></script>
-  <script src="js/handlebars-v1.3.0.js"></script>
 
   <script id="mov-pin-template" type="text/x-handlebars-template">
-    <li id="mov-button" data-arrayid={{arrayid}}>
-      <image class ="image" src="http://image.tmdb.org/t/p/original/{{poster_path}}">
+    <li id="movie-pin" data-movieID={{id}}>
+      <image class ="image" src="{{poster_path}}">
+      <p hidden=true>{{title}}</p>
     </li>
   </script>
 
@@ -28,7 +28,7 @@
   <script id="mov-info-template" type="text/x-handlebars-template">
     <div class="large-10 small-10 medium-10 columns push-1 panel">
       <div class="large-5 small-5 medium-5 columns text-center">
-        <image class ="image" src="http://image.tmdb.org/t/p/original/{{poster_path}}"></image>
+        <image class ="image" src="{{poster_path}}"></image>
         <p><div class="button tiny radius round add-to-playlist" data-mid="{{id}}"> Add to Playlist</div></p>
       </div>
       <div class="large-7 small-7 medium-7 columns" >
@@ -40,11 +40,15 @@
           <li>Release Date: {{release_date}}</li>
           <li>Vote Average: {{vote_average}}</li>
           <li>Vote Count: {{vote_count}}</li>
-          <li>IMDB Link: {{ibdm_link}}</li>
           <li>TagLine: {{tagline}}</li>
+          <li>OverView: {{overview}}</li>
           </ul>
       </div>
     </div>
+  </script>
+
+  <script id="genre-template" type="text/x-handlebars-template">
+    <option value="{{name}}" data-genreid="{{id}}">{{name}}</option>
   </script>
 
 <!-- STATIC HTML and ANCHORS BEGIN BELOW -->
@@ -56,25 +60,27 @@
   <div class="row" id="movieTypes">
     <div class="large-10 small-10 medium-10 columns large-centered small-centered medium-centered">
       <div class="large-3 small-3 medium-3 columns">
-        <label>Filter
-          <select id="moviesSelect">
-            <!-- <option value="upcoming">Upcoming</option> -->
+        <label>Quick Filters
+          <select id="quickFilters">
             <option value="popular">Popular</option>
-            <!-- <option value="latest">Latest</option> -->
+            <option value="upcoming">Upcoming</option>
+            <!-- <option value="latest">Latest</option> // might not work -->
             <option value="nowPlaying">Now Playing</option>
             <option value="topRated">Top Rated</option>
           </select>
         </label>
       </div>
       <div class="large-3 small-3 medium-3 columns">
-        <label>Name Search
-          <input type="text" name="searchMovie" value="">
+        <label>Genres
+          <select id="genreFilter">
+
+          </select>
         </label>
       </div>
       <div class="large-3 small-3 medium-3 columns">
         <label>PlayLists
-          <select id="playListSelect">
-            <option value="playlist1">Playlist1</option>
+          <select id="playlistFilter">
+          <!-- ANCHOR FOR THE PLAYLIST FILTER DROPDOWN -->
           </select>
         </label>
       </div>
@@ -83,14 +89,16 @@
   </div>
 
   <div class="row">
-    <div class="large-12 small-12 medium-12 columns panel">
-      <ul id="now-playing-movies" class="large-block-grid-8 small-block-grid-8 medium-block-grid-5">
-
-      </ul>
+    <div class="large-12 small-12 medium-12 columns text-center">
+      <fieldset>
+        <legend><span id="filterNote">Popular</span></legend>
+          <ul id="movie-pin-board" class="large-block-grid-6 small-block-grid-5 medium-block-grid-5">
+          <!-- ANCHOR FOR THE ACTUAL MOVIE PIN BOARD -->
+          </ul>
+      </fieldset>
     </div>
   </div>
 
-  <script src="js/awesomeApp.js"></script>
 </body>
 
 </html>
